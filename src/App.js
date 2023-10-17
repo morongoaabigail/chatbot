@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import './index.css';
+import { Route,createBrowserRouter,createRoutesFromElements,RouterProvider } from 'react-router-dom';
+import ParentLayout from './components/ParentLayout';
+import Chats from "./components/Chats";
+import Comp404 from "./components/Comp404";
 
+const router=createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<ParentLayout/>}>
+      <Route exact path='/' element={<Chats/>}/>
+      <Route exact path='*' element={<Comp404/>}/>
+    </Route>
+  )
+);
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RouterProvider router={router}/>
   );
 }
 
